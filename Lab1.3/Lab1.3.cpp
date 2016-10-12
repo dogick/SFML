@@ -14,10 +14,10 @@ enum class Direction
 
 };
 
-class ÑRectangle
+class CRectangle
 {
 public:
-	ÑRectangle(sf::Vector2f const& position, sf::Vector2f const& size, sf::Vector2f const& scale, Direction const& direction);
+	CRectangle(sf::Vector2f const& position, sf::Vector2f const& size, sf::Vector2f const& scale, Direction const& direction);
 	void Update(float elapsedTime);
 	void Draw(sf::RenderWindow & window);
 private:
@@ -27,7 +27,7 @@ private:
 	void AnimateDiagonally();
 };
 
-ÑRectangle::ÑRectangle(sf::Vector2f const& position, sf::Vector2f const& size, sf::Vector2f const& scale, Direction const& direction)
+CRectangle::CRectangle(sf::Vector2f const& position, sf::Vector2f const& size, sf::Vector2f const& scale, Direction const& direction)
 {
 	m_rectangle.setPosition(position);
 	m_rectangle.setSize(size);
@@ -37,7 +37,7 @@ private:
 	m_direction = direction;
 }
 
-void ÑRectangle::AnimateRight(float elapsedTime)
+void CRectangle::AnimateRight(float elapsedTime)
 {
 	sf::Vector2f position = m_rectangle.getPosition();
 	sf::Vector2f size = m_rectangle.getSize();
@@ -49,12 +49,12 @@ void ÑRectangle::AnimateRight(float elapsedTime)
 	}
 }
 
-void ÑRectangle::AnimateDiagonally()
+void CRectangle::AnimateDiagonally()
 {
 
 }
 
-void ÑRectangle::Update(float elapsedTime)
+void CRectangle::Update(float elapsedTime)
 {
 	switch (m_direction)
 	{
@@ -68,12 +68,12 @@ void ÑRectangle::Update(float elapsedTime)
 	}
 }
 
-void ÑRectangle::Draw(sf::RenderWindow & window)
+void CRectangle::Draw(sf::RenderWindow & window)
 {
 	window.draw(m_rectangle);
 }
 
-void Render(sf::RenderWindow & window, std::vector<ÑRectangle*> & rectangles, float elapsedTime)
+void Render(sf::RenderWindow & window, std::vector<CRectangle*> & rectangles, float elapsedTime)
 {
 	window.clear(sf::Color::White);
 	for (auto rectangle : rectangles)
@@ -98,12 +98,12 @@ void HandleEvents(sf::RenderWindow & window)
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML!");
-	std::vector<ÑRectangle*> rectangles;
+	std::vector<CRectangle*> rectangles;
 	float step = 0;
 	for (int i = 0; i != MAX_COUNT_BLOCK; ++i)
 	{
 		step += 50;
-		rectangles.push_back(new ÑRectangle(sf::Vector2f(0, 100 + step) , sf::Vector2f(30, 30), sf::Vector2f(1, 1), Direction::RIGHT));
+		rectangles.push_back(new CRectangle(sf::Vector2f(0, 100 + step) , sf::Vector2f(30, 30), sf::Vector2f(1, 1), Direction::RIGHT));
 	}
 
 	sf::Clock clock;
